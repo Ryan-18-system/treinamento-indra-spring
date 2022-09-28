@@ -14,22 +14,20 @@ import lombok.Setter;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "nome",
-    "login",
-    "email",
+        "nome",
+        "login",
+        "email",
 })
-public class UsuarioDTO implements Serializable
-{
+public class UsuarioDTO implements Serializable {
 
     private final static long serialVersionUID = 7035599428517710313L;
-    
+
     @JsonProperty("nome")
     private String nome;
     @JsonProperty("login")
     private String login;
     @JsonProperty("email")
     private String email;
-
 
 
 }

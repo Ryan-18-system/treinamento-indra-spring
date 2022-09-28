@@ -18,25 +18,25 @@ import com.indracompany.treinamento.model.service.ClienteService;
 
 @RestController
 @RequestMapping("rest/clientes")
-public class ClienteRest extends GenericCrudRest<Cliente, Long, ClienteService>{
-	
-	@Autowired
-	private ClienteService clienteService;
-	
-	@GetMapping(value = "/buscarPorCpf/{cpf}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<ClienteDTO> buscarClientePorCpf(@PathVariable String cpf) {
-		ClienteDTO cli = clienteService.buscarClientePorCpf(cpf);
-		return new ResponseEntity<>(cli, HttpStatus.OK);
-	}
-	
-	@GetMapping(value = "/buscarPorNome/{nome}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<List<ClienteDTO>> buscarClientePorNomes(@PathVariable String nome){
-		List<ClienteDTO> lista = clienteService.buscarClientePorNome(nome);
-		if (lista == null || lista.isEmpty()) {
-			return new ResponseEntity<>( HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(lista, HttpStatus.OK);
-	}
-	
+public class ClienteRest extends GenericCrudRest<Cliente, Long, ClienteService> {
+
+    @Autowired
+    private ClienteService clienteService;
+
+    @GetMapping(value = "/buscarPorCpf/{cpf}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<ClienteDTO> buscarClientePorCpf(@PathVariable String cpf) {
+        ClienteDTO cli = clienteService.buscarClientePorCpf(cpf);
+        return new ResponseEntity<>(cli, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/buscarPorNome/{nome}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<List<ClienteDTO>> buscarClientePorNomes(@PathVariable String nome) {
+        List<ClienteDTO> lista = clienteService.buscarClientePorNome(nome);
+        if (lista == null || lista.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
 
 }

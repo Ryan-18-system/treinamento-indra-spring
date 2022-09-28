@@ -19,27 +19,25 @@ import lombok.Setter;
 @Table(name = "clientes")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Cliente extends GenericEntity<Long>{
-	private static final long serialVersionUID = 2955934673205574114L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class Cliente extends GenericEntity<Long> {
+    private static final long serialVersionUID = 2955934673205574114L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(length = 50)
-	private String nome;
-	
-	@CPF
-	@Column(length = 11)
-	private String cpf;
-	
-	@Email
-	private String email;
-	
-	private boolean ativo;
-	
-	private String observacoes;
+    @Column(length = 50)
+    private String nome;
 
-	
+    @CPF
+    @Column(length = 11)
+    private String cpf;
 
-	
+    @Email
+    private String email;
+
+    private boolean ativo;
+
+    private String observacoes;
+
+
 }

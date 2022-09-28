@@ -1,7 +1,6 @@
 package com.indracompany.treinamento.model.entity;
 
 
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,19 +8,19 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name="extratos_ryan")
+@Table(name = "extratos_ryan")
 @Data
-public class ExtratoBancario extends GenericEntity<Long>{
+public class ExtratoBancario extends GenericEntity<Long> {
     private static final long serialVersionUID = 2955934673205574114L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
     @Column
-    private LocalDate  data;
+    private LocalDate data;
 
     @Column(length = 20)
-    private  String tipoDeOperacao;
+    private String tipoDeOperacao;
 
     @Column(nullable = false)
     private Double valor;
