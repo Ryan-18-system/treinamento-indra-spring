@@ -60,7 +60,11 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
         ExtratoBancario extrato = new ExtratoBancario();
         LocalDate dataAtual = LocalDate.now();
         extrato.setConta(contaBancaria);
-        extrato.setTipoDeOperacao("deposito");
+        if(dto.isTransferencia()){
+            extrato.setTipoDeOperacao("transferência");
+        }else{
+            extrato.setTipoDeOperacao("deposito");
+        }
         extrato.setValor(dto.getValor());
         extrato.setData(dataAtual);
         extrato.setObservacao(null);
@@ -79,7 +83,11 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
         LocalDate dataAtual = LocalDate.now();
         extrato.setConta(contaBancaria);
         extrato.setData(dataAtual);
-        extrato.setTipoDeOperacao("saque");
+        if(dto.isTransferencia()){
+            extrato.setTipoDeOperacao("transferência");
+        }else{
+            extrato.setTipoDeOperacao("saque");
+        }
         extrato.setValor(dto.getValor());
         extrato.setObservacao(null);
         extratoBancarioService.salvar(extrato);
@@ -92,13 +100,14 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
         saqueDto.setAgencia(transferenciaDto.getAgenciaOrigem());
         saqueDto.setNumeroConta(transferenciaDto.getNumeroContaOrigem());
         saqueDto.setValor(transferenciaDto.getValor());
-
+        saqueDto.setTransferencia(true);
         this.sacar(saqueDto);
 
         DepositoDTO depositoDto = new DepositoDTO();
         depositoDto.setAgencia(transferenciaDto.getAgenciaDestino());
         depositoDto.setNumeroConta(transferenciaDto.getNumeroContaDestino());
         depositoDto.setValor(transferenciaDto.getValor());
+        depositoDto.setTransferencia(true);
         this.depositar(depositoDto);
 
     }
